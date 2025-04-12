@@ -23,11 +23,3 @@ def chat(req: QueryRequest):
     chat_memory.append(req.query, result["answer"])
     return {"response": result["answer"]} 
 
-# setting up threads to 1, render free host uses threads less than 2
-import os
-
-os.environ["OMP_NUM_THREADS"] = "1"
-os.environ["OPENBLAS_NUM_THREADS"] = "1"
-os.environ["MKL_NUM_THREADS"] = "1"
-os.environ["VECLIB_MAXIMUM_THREADS"] = "1"
-os.environ["NUMEXPR_NUM_THREADS"] = "1"
