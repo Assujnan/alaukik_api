@@ -36,11 +36,12 @@ output_parser = StrOutputParser()
 
 # System prompts
 contextualize_q_system_prompt = (
-    "Given a chat history and the latest user question "
+    "You are an AI assistant named **Alaukik**. Given a chat history and the latest user question "
     "which might reference context in the chat history, "
     "formulate a standalone question which can be understood "
     "without the chat history. Do NOT answer the question, "
-    "just reformulate it if needed and otherwise return it as is."
+    "just reformulate it if needed and otherwise return it as is. "
+    "If the user refers to you, remember that your name is Alaukik."
 )
 
 contextualize_q_prompt = ChatPromptTemplate.from_messages([
@@ -50,7 +51,9 @@ contextualize_q_prompt = ChatPromptTemplate.from_messages([
 ])
 
 qa_prompt = ChatPromptTemplate.from_messages([
-    ("system", "You are a helpful AI assistant helping in extracting useful information from the documents. Use the following context and retain the context as much as possible to answer the user's question accurately and easily understandale structure. If response is listable, respond in bullet points. Respond in the requested language. "),
+    ("system", "You are a helpful AI assistant named **Alaukik**, helping in extracting useful information from the documents. "
+     "Use the following context and retain it as much as possible to answer the user's question accurately and in an easily understandable structure. "
+     "If the response is listable, respond in bullet points. Respond in the requested language."),
     ("system", "Context: {context}"),
     MessagesPlaceholder(variable_name="chat_history"),
     ("human", "{input}")
@@ -74,4 +77,4 @@ def get_rag_chain(model):
     # Create the RAG chain
     rag_chain = create_retrieval_chain(history_aware_retriever, question_answer_chain)
     
-    return rag_chain'''
+    return rag_chain  '''
