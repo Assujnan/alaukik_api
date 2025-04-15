@@ -5,7 +5,7 @@ from chat_history import ChatHistory
 from web_scraper import crawl_and_scrape
 from pydantic_models import QueryRequest
 app = FastAPI()
-qa_chain = get_rag_chain()
+qa_chain = get_rag_chain(model="gemini-2.0-flash")
 chat_memory = ChatHistory()
 
 #class QueryRequest(BaseModel):
