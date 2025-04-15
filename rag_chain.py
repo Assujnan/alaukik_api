@@ -14,7 +14,7 @@ import os
 vectordb = get_vector_store()
 retriever = vectordb.as_retriever(search_kwargs={"k": 4})
 
-'''
+
 def get_conversational_chain():
     llm = ChatGoogleGenerativeAI(
         model="gemini-2.0-flash",
@@ -77,4 +77,4 @@ def get_rag_chain(model):
     # Create the RAG chain
     rag_chain = create_retrieval_chain(history_aware_retriever, question_answer_chain)
     
-    return rag_chain  
+    return rag_chain  '''
