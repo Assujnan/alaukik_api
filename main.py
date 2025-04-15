@@ -19,7 +19,7 @@ def scrape(url: str):
 @app.post("/chat/")
 def chat(req: QueryRequest):
     chat_history = chat_memory.get()
-    result = qa_chain({"question": req.query, "chat_history": chat_history})
+    result = qa_chain.invoke({"question": req.query, "chat_history": chat_history})
     chat_memory.append(req.query, result["answer"])
     return {"response": result["answer"]} 
 
